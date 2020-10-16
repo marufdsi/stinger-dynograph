@@ -17,11 +17,11 @@ using std::make_shared;
 
 bool cmp(const Edge& a, const Edge& b)
 {
-    if(a.timestamp >= b.timestamp) {
+    if(a.timestamp < b.timestamp) {
+        std::cout<<"failed case: [" <<a.src << "->" << a.dst << "->" << a.weight << "->" << a.timestamp << "] " <<" [" <<b.src << "->" << b.dst << "->" << b.weight << "->" << b.timestamp << "]" << "\n";
         return true;
     }
     else {
-        std::cout<<"failed case: [" <<a.src << "->" << a.dst << "->" << a.weight << "->" << a.timestamp << "] " <<" [" <<b.src << "->" << b.dst << "->" << b.weight << "->" << b.timestamp << "]" << "\n";
         return false;
     }
 }
