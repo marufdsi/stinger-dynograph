@@ -69,7 +69,7 @@ EdgeListDataset::EdgeListDataset(Args args)
 
     // Make sure edges are sorted by timestamp, and save min/max timestamp
     if (!std::is_sorted(edges.begin(), edges.end(),
-            [](const Edge& a, const Edge& b) { if(a.timestamp < b.timestamp) return true; else {std::cout <<"[" <<a.src << "->" << a.dst << "->" << a.weight << "->" << a.timestamp << "] " <<" [" <<b.src << "->" << b.dst << "->" << b.weight << "->" << b.timestamp << "]" << std::endl; return false;} }))
+            cmp))
     {
         logger << "Invalid dataset: edges not sorted by timestamp\n";
         die();
