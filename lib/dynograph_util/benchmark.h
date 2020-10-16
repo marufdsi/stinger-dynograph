@@ -9,12 +9,11 @@
 #include <iostream>
 #include <assert.h>
 #include <algorithm>
+#include <chrono>
 
 #include <sys/stat.h>
 #include <unistd.h>
 #include <ctime>
-#include <vector>
-#include <algorithm>
 #include <fstream>
 
 #include "args.h"
