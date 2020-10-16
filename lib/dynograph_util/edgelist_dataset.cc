@@ -17,11 +17,11 @@ using std::make_shared;
 
 bool cmp(const Edge& a, const Edge& b)
 {
-    Logger &logger = Logger::get_instance();
     if(a.timestamp <= b.timestamp) {
         return true;
     }
     else {
+        std::cout<<"failed case: [" <<a.src << "->" << a.dst << "->" << a.weight << "->" << a.timestamp << "] " <<" [" <<b.src << "->" << b.dst << "->" << b.weight << "->" << b.timestamp << "]" << "\n";
         return false;
     }
 }
