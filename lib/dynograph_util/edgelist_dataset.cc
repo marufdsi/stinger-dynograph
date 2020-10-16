@@ -17,7 +17,7 @@ using std::make_shared;
 
 bool cmp(const Edge& a, const Edge& b)
 {
-    if(a.timestamp <= b.timestamp) {
+    if(a.timestamp >= b.timestamp) {
         return true;
     }
     else {
