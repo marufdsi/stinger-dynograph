@@ -15,6 +15,20 @@ using namespace DynoGraph;
 using std::shared_ptr;
 using std::make_shared;
 
+bool cmp(const Edge& a, const Edge& b)
+{
+    Logger &logger = Logger::get_instance();
+    if(a.timestamp < b.timestamp) {
+        printf("test1\n");
+        logger <<"Valid a:" << a.timestamp << " b: " << b.timestamp << "\n";
+        return true;
+    }
+    else {
+        printf("test2\n");
+        logger <<"[" <<a.src << "->" << a.dst << "->" << a.weight << "->" << a.timestamp << "] " <<" [" <<b.src << "->" << b.dst << "->" << b.weight << "->" << b.timestamp << "]" << "\n";
+        return false;
+    }
+}
 EdgeListDataset::EdgeListDataset(Args args)
         : args(args), directed(true)
 {
@@ -55,7 +69,7 @@ EdgeListDataset::EdgeListDataset(Args args)
 
     // Make sure edges are sorted by timestamp, and save min/max timestamp
     if (!std::is_sorted(edges.begin(), edges.end(),
-            [](const Edge& a, const Edge& b) { if(a.timestamp < b.timestamp) return true; else {std::cout<<"[" <<a.src << "->" << a.dst << "->" << a.weight << "->" << a.timestamp << "] " <<" [" <<b.src << "->" << b.dst << "->" << b.weight << "->" << b.timestamp << "]" << std::endl; return false;} }))
+            [](const Edge& a, const Edge& b) { if(a.timestamp < b.timestamp) return true; else {std::cout <<"[" <<a.src << "->" << a.dst << "->" << a.weight << "->" << a.timestamp << "] " <<" [" <<b.src << "->" << b.dst << "->" << b.weight << "->" << b.timestamp << "]" << std::endl; return false;} }))
     {
         logger << "Invalid dataset: edges not sorted by timestamp\n";
         die();
