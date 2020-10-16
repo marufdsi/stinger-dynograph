@@ -19,13 +19,9 @@ bool cmp(const Edge& a, const Edge& b)
 {
     Logger &logger = Logger::get_instance();
     if(a.timestamp <= b.timestamp) {
-        printf("test1\n");
-        logger <<"Valid a:" << a.timestamp << " b: " << b.timestamp << "\n";
         return true;
     }
     else {
-        printf("test2\n");
-        logger <<"[" <<a.src << "->" << a.dst << "->" << a.weight << "->" << a.timestamp << "] " <<" [" <<b.src << "->" << b.dst << "->" << b.weight << "->" << b.timestamp << "]" << "\n";
         return false;
     }
 }
