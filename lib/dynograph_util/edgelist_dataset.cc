@@ -18,7 +18,7 @@ using std::make_shared;
 bool cmp(const Edge& a, const Edge& b)
 {
     Logger &logger = Logger::get_instance();
-    if(a.timestamp < b.timestamp) {
+    if(a.timestamp <= b.timestamp) {
         printf("test1\n");
         logger <<"Valid a:" << a.timestamp << " b: " << b.timestamp << "\n";
         return true;
@@ -68,6 +68,13 @@ EdgeListDataset::EdgeListDataset(Args args)
     max_vertex_id = Batch(edges).max_vertex_id();
 
     // Make sure edges are sorted by timestamp, and save min/max timestamp
+    for (int kk=0; kk<edges.size()-1; ++kk) {
+        Edge a = edges[kk];
+        Edge b = edges[kk+1];
+        if(a.timestamp > b.timestamp){
+            logger<<"[" <<a.src << "->" << a.dst << "->" << a.weight << "->" << a.timestamp << "] " <<" [" <<b.src << "->" << b.dst << "->" << b.weight << "->" << b.timestamp << "]" << "\n";
+        }
+    }
     if (!std::is_sorted(edges.begin(), edges.end(),
             cmp))
     {
