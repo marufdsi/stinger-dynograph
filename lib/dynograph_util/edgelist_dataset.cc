@@ -64,13 +64,15 @@ EdgeListDataset::EdgeListDataset(Args args)
     max_vertex_id = Batch(edges).max_vertex_id();
 
     // Make sure edges are sorted by timestamp, and save min/max timestamp
+    std::cout<<"check timestamp" << std::endl;
     for (int kk=0; kk<edges.size()-1; ++kk) {
         Edge a = edges[kk];
         Edge b = edges[kk+1];
         if(a.timestamp > b.timestamp){
-            logger<<"[" <<a.src << "->" << a.dst << "->" << a.weight << "->" << a.timestamp << "] " <<" [" <<b.src << "->" << b.dst << "->" << b.weight << "->" << b.timestamp << "]" << "\n";
+            std::cout<<"[" <<a.src << "->" << a.dst << "->" << a.weight << "->" << a.timestamp << "] " <<" [" <<b.src << "->" << b.dst << "->" << b.weight << "->" << b.timestamp << "]" << "\n";
         }
     }
+    std::cout<<"done findings" <<std::endl;
     if (!std::is_sorted(edges.begin(), edges.end(),
             cmp))
     {
