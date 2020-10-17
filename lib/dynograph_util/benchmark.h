@@ -182,7 +182,7 @@ public:
         pageRankLog.open(pageRankLogFileName, std::ios_base::out | std::ios_base::app | std::ios_base::ate);
         if (!existing_pr_file) {
             pageRankLog
-                    << "Graph,Nodes,Edges,BatchSize,NumberOfBatches,Epoch,ExecTime,ReadTime,InitTime,InsertionTime,DeletionTime"
+                    << "Graph,Nodes,Edges,BatchSize,NumberOfBatches,Epoch,WindowSize,ExecTime,ReadTime,InitTime,InsertionTime,DeletionTime"
                     << std::endl;
         }
         prInfile.close();
@@ -191,8 +191,8 @@ public:
         std::vector<std::string> goodFormat = parseString(split[split.size() - 1].begin(), split[split.size() - 1].end(), '.');
         std::string graphName = goodFormat[0];
         pageRankLog << graphName << "," << dataset->getMaxVertexId() << "," << dataset->getNumEdges() << ","
-        << num_batches << "," << args.num_epochs << "," << (r_time+t_p+t_init+t_i+t_d) << "," << r_time << "," << t_init
-        << "," << t_i << "," << t_d << std::endl;
+        << args.batch_size << "," << num_batches << "," << args.num_epochs << "," << args.window_size << ","
+        << (r_time+t_p+t_init+t_i+t_d) << "," << r_time << "," << t_init << "," << t_i << "," << t_d << std::endl;
         pageRankLog.close();
         assert(epoch == args.num_epochs);
         // Reset dataset for next trial
