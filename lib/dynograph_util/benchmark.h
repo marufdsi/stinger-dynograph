@@ -175,7 +175,7 @@ public:
         else
             std::cout << "Directory " << folderName << " created" << std::endl;
 
-        std::string pageRankLogFileName = "ResultSets/SeqPageRankLog.csv";
+        std::string pageRankLogFileName = "ResultSets/PageRankLog.csv";
         std::ifstream prInfile(pageRankLogFileName);
         bool existing_pr_file = prInfile.good();
         std::ofstream pageRankLog;
